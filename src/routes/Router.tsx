@@ -8,7 +8,7 @@ const Router = () => {
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Coins />} />
-        <Route path='/:coinName' element={<Coin />} />
+        <Route path='/:coinid' element={<Coin />} />
       </Routes>
     </BrowserRouter>
   );
