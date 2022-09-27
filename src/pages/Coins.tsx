@@ -1,39 +1,32 @@
 import React from 'react';
 import { useQuery } from 'react-query';
 import styled from 'styled-components';
-import { fetchCoins } from '../api';
+import { bithumbCoins } from '../api';
 import { Link } from 'react-router-dom';
 
-interface ICoin {
-  id: string;
-  name: string;
-  symbol: string;
-  rank: number;
-  is_new: boolean;
-  is_active: boolean;
-  type: string;
-}
-
 const Coins = () => {
-  const { isLoading, data } = useQuery<ICoin[]>('allCoins', fetchCoins);
+  const { isLoading, data } = useQuery('allCoins', bithumbCoins);
   return (
     <Container>
       <Header>
         <Title>코인 리스트</Title>
       </Header>
-
-      <CoinList>
-        {data?.slice(0, 100).map((coin) => (
-          <Coin key={coin.id}>
-            <Link to={`/${coin.id}`} state={{ name: coin.id }}>
-              <Img
-                src={`https://coinicons-api.vercel.app/api/icon/${coin.symbol.toLowerCase()}`}
-              />
-              {coin.name}
-            </Link>
-          </Coin>
-        ))}
-      </CoinList>
+      {isLoading ? (
+        '로딩 중...'
+      ) : (
+        <CoinList>
+          {Object.keys(data?.data).map((coin) => (
+            <Coin key={coin}>
+              <Link to={`/${coin}`} state={{ name: coin }}>
+                <Img
+                  src={`https://coinicons-api.vercel.app/api/icon/${coin.toLowerCase()}`}
+                />
+                {coin}
+              </Link>
+            </Coin>
+          ))}
+        </CoinList>
+      )}
     </Container>
   );
 };
