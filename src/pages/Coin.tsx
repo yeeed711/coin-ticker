@@ -1,9 +1,9 @@
-import React from 'react';
 import { useParams, useLocation } from 'react-router-dom';
-import styled from 'styled-components';
-import ApexChart from 'react-apexcharts';
 import { useQuery } from 'react-query';
+import styled from 'styled-components';
 import { bithumbCandlestick, bithumbCoinInfo } from '../api';
+import Candle from '../components/Chart/Candle';
+import Area from '../components/Chart/Area';
 
 interface ICoin {
   data: {
@@ -22,7 +22,7 @@ interface ICoin {
 }
 
 // interface ICandlestick {
-
+// 만들어야함 ㅠㅠ
 // }
 
 const Coin = () => {
@@ -34,12 +34,12 @@ const Coin = () => {
     () => bithumbCoinInfo(`${coinId}`)
   );
 
-  const { isLoading: candlestickLoading, data: candlestickData } =
-    useQuery<any>(['candlestick', coinId], () =>
-      bithumbCandlestick(`${coinId}`)
-    );
+  const { isLoading: candleIsLoading, data: candleData } = useQuery<any>(
+    ['candlestick', coinId],
+    () => bithumbCandlestick(`${coinId}`)
+  );
 
-  const loading = coinInfoLoading || candlestickLoading;
+  const loading = coinInfoLoading || candleIsLoading;
   return (
     <Container>
       <Title>{state.name}</Title>
@@ -73,49 +73,10 @@ const Coin = () => {
       {loading ? (
         '로딩차트'
       ) : (
-        <ApexChart
-          width='800px'
-          type='candlestick'
-          series={[
-            {
-              data:
-                candlestickData.data.slice(0, 100).map((candle: any) => {
-                  return {
-                    x: candle[0],
-                    y: [candle[1], candle[3], candle[4], candle[2]],
-                  };
-                }) ?? [],
-            },
-          ]}
-          options={{
-            theme: {
-              mode: 'light',
-            },
-            chart: {
-              toolbar: {
-                show: false,
-              },
-              background: 'transparent',
-            },
-            plotOptions: {
-              candlestick: {
-                colors: {
-                  upward: '#cf314a',
-                  downward: '#02c076',
-                },
-              },
-            },
-            xaxis: {
-              type: 'datetime',
-            },
-            yaxis: {
-              opposite: true,
-              tooltip: {
-                enabled: true,
-              },
-            },
-          }}
-        />
+        <>
+          <Candle candleData={candleData} />
+          <Area candleData={candleData} />
+        </>
       )}
     </Container>
   );
