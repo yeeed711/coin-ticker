@@ -21,47 +21,77 @@ interface ICoin {
 
 const PriceTicker = () => {
   const { coinId } = useParams();
-  const { state } = useLocation();
 
   //코인 정보
   const { isLoading, data: coinInfoData } = useQuery<ICoin>(
     ['ohlcv', coinId],
     () => bithumbCoinInfo(`${coinId}`)
+    // { refetchInterval: 1000 }
   );
+  let refValue =
+    (Number(coinInfoData?.data.closing_price) -
+      Number(coinInfoData?.data.prev_closing_price)) /
+    Number(coinInfoData?.data.prev_closing_price);
+
+  let fluctateRefValue = Number(coinInfoData?.data.fluctate_24H);
+
+  if (isLoading) return <div>PreceTicker 로딩중</div>;
+
   return (
     <Wrapper>
-      <Title>
-        <Img
-          src={`https://coinicons-api.vercel.app/api/icon/${state.name.toLowerCase()}`}
-        />
-        {state.name}/KWR
-      </Title>
-      <NowPrice>
-        {Number(coinInfoData?.data.closing_price).toLocaleString('KR-ko')}
+      <NowPrice className={refValue > 0 ? 'high' : 'low'}>
+        <Title>
+          <Img
+            src={`https://coinicons-api.vercel.app/api/icon/${coinId?.toLowerCase()}`}
+          />
+          {coinId}/KWR
+        </Title>
+        <span>
+          {Number(coinInfoData?.data.closing_price).toLocaleString('KR-ko')}
+        </span>
+        <span>전일대비</span>
+        <span>
+          {(
+            ((Number(coinInfoData?.data.closing_price) -
+              Number(coinInfoData?.data.prev_closing_price)) /
+              Number(coinInfoData?.data.prev_closing_price)) *
+            100
+          ).toFixed(2)}
+          %
+        </span>
+        <span>
+          {refValue > 0 ? '▲ ' : '▼ '}
+          {Math.abs(
+            Number(coinInfoData?.data.prev_closing_price) -
+              Number(coinInfoData?.data.closing_price)
+          ).toLocaleString('KR-ko')}
+        </span>
       </NowPrice>
       <PriceView>
         <PriceCategory>
           <PriceValue>
             <span>변동률(24h)</span>
-            <span>{coinInfoData?.data.fluctate_rate_24H}%</span>
+            <span className={fluctateRefValue > 0 ? 'high' : 'low'}>
+              {coinInfoData?.data.fluctate_rate_24H}%
+            </span>
           </PriceValue>
           <PriceValue>
             <span>변동가(24h)</span>
-            <span>
+            <span className={fluctateRefValue > 0 ? 'high' : 'low'}>
               {Number(coinInfoData?.data.fluctate_24H).toLocaleString('KR-ko')}
             </span>
           </PriceValue>
           <PriceValue>
             <span>저가(24h)</span>
-            <LowPrice>
+            <span className='low'>
               {Number(coinInfoData?.data.min_price).toLocaleString('KR-ko')}
-            </LowPrice>
+            </span>
           </PriceValue>
           <PriceValue>
             <span>고가(24h)</span>
-            <HighPrice>
+            <span className='high'>
               {Number(coinInfoData?.data.max_price).toLocaleString('KR-ko')}
-            </HighPrice>
+            </span>
           </PriceValue>
           <PriceValue>
             <span>거래량(24h)</span>
@@ -83,33 +113,47 @@ const Wrapper = styled.div`
   min-width: 800px;
   display: flex;
   align-items: center;
-  padding: 2rem 0;
   justify-content: space-around;
-  gap: 2rem;
-  background-color: white;
+  background-color: ${(props) => props.theme.color.bg.lv2};
   border-radius: 10px;
   box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.1);
-  margin: 0 auto;
 `;
 
 const Title = styled.h2`
-  font-size: 2.4rem;
-  color: ${(props) => props.theme.coinTitleColor};
-  img {
-    vertical-align: middle;
-  }
+  font-size: 1.4rem;
+  color: ${(props) => props.theme.color.text.lv2};
 `;
 
-const NowPrice = styled.span`
-  font-size: 3rem;
-  font-weight: 600;
+const NowPrice = styled.div`
+  font-size: 1.4rem;
+  span + span {
+    margin-right: 7px;
+  }
+  span:nth-of-type(1) {
+    display: block;
+    font-size: 3rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  span:nth-of-type(2) {
+    color: #9c9c9c;
+    font-size: 1.4rem;
+  }
+  span:nth-of-type(3) {
+  }
+  &.low {
+    color: ${(props) => props.theme.color.accent.low};
+  }
+  &.high {
+    color: ${(props) => props.theme.color.accent.high};
+  }
 `;
 
 const PriceView = styled.div``;
 
 const PriceCategory = styled.div`
   display: flex;
-  gap: 1.5rem;
+  gap: 3rem;
 `;
 
 const PriceValue = styled.div`
@@ -118,19 +162,18 @@ const PriceValue = styled.div`
   gap: 0.8rem;
   span:last-child {
     font-size: 1.4rem;
+    &.low {
+      color: ${(props) => props.theme.color.accent.low};
+    }
+    &.high {
+      color: ${(props) => props.theme.color.accent.high};
+    }
   }
 `;
 
-const LowPrice = styled.span`
-  color: ${(props) => props.theme.LowColor};
-`;
-
-const HighPrice = styled.span`
-  color: ${(props) => props.theme.HighColor};
-`;
-
 const Img = styled.img`
-  width: 35px;
-  height: 35px;
-  margin-right: 10px;
+  width: 20px;
+  height: 20px;
+  margin: 0 8px 3px 0;
+  vertical-align: middle;
 `;
