@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
-import styled from 'styled-components';
 import { isDarkAtom } from '../../atoms';
 import ModeChangeBtn from '../ModeChangeBtn/ModeChangeBtn';
+import * as S from './style';
 
 const Nav = () => {
   const setDarkAtom = useSetRecoilState(isDarkAtom);
@@ -10,29 +10,15 @@ const Nav = () => {
   const isDark = useRecoilValue(isDarkAtom);
 
   return (
-    <Header>
-      <Logo>
+    <S.Header>
+      <S.Logo>
         <Link to='/'>{`{ COIN$ TICKER }`}</Link>
-      </Logo>
+      </S.Logo>
       <ModeChangeBtn onClick={toggleDarkAtom}>
         {isDark ? 'Light' : 'Dark'}
       </ModeChangeBtn>
-    </Header>
+    </S.Header>
   );
 };
 
 export default Nav;
-
-const Header = styled.header`
-  height: 10vh;
-  text-align: center;
-  padding: 2rem;
-  display: flex;
-  justify-content: space-between;
-`;
-
-const Logo = styled.h1`
-  font-style: oblique;
-  font-weight: 500;
-  font-size: 4rem;
-`;

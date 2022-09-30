@@ -20,7 +20,6 @@ const Area = ({ data }: any) => {
         ]}
         options={{
           theme: { mode: isDark ? 'dark' : 'light' },
-          xaxis: { type: 'datetime' },
           chart: {
             toolbar: { show: false },
             zoom: { autoScaleYaxis: true },
@@ -28,6 +27,15 @@ const Area = ({ data }: any) => {
           },
           dataLabels: { enabled: false },
           stroke: { curve: 'smooth' },
+          xaxis: { type: 'datetime' },
+          yaxis: {
+            opposite: true,
+            labels: {
+              formatter: function (val, index) {
+                return val.toFixed(2);
+              },
+            },
+          },
         }}
       />
     </>

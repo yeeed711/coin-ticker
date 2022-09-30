@@ -4,6 +4,7 @@ import { isDarkAtom } from './atoms';
 import { GlobalStyle } from './GlobalStyle';
 import Router from './routes/Router';
 import { darkTheme, lightTheme } from './theme';
+import { ReactQueryDevtools } from 'react-query/devtools';
 
 function App() {
   const isDark = useRecoilValue(isDarkAtom);
@@ -12,6 +13,7 @@ function App() {
     <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
       <GlobalStyle />
       <Router />
+      <ReactQueryDevtools initialIsOpen={true} />
     </ThemeProvider>
   );
 }

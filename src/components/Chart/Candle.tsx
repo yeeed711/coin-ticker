@@ -21,14 +21,10 @@ const Candle = ({ data }: any) => {
           },
         ]}
         options={{
-          theme: {
-            mode: isDark ? 'dark' : 'light',
-          },
+          theme: { mode: isDark ? 'dark' : 'light' },
           chart: {
-            toolbar: {
-              show: false,
-            },
             background: 'transparent',
+            toolbar: { show: false },
             zoom: { autoScaleYaxis: true },
           },
           plotOptions: {
@@ -39,9 +35,7 @@ const Candle = ({ data }: any) => {
               },
             },
           },
-          xaxis: {
-            type: 'datetime',
-          },
+          xaxis: { type: 'datetime' },
           yaxis: {
             opposite: true,
             tooltip: {
