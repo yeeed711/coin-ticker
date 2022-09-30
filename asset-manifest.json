@@ -1,0 +1,10 @@
+{
+  "files": {
+    "main.js": "/coin-ticker/static/js/main.f8aa70e3.js",
+    "index.html": "/coin-ticker/index.html",
+    "main.f8aa70e3.js.map": "/coin-ticker/static/js/main.f8aa70e3.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.f8aa70e3.js"
+  ]
+}
