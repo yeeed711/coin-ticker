@@ -13,8 +13,8 @@ html {
 }
 
 body{
- background-color: ${(props) => props.theme.bgColor};
- color: ${(props) => props.theme.textColor}
+ background-color: ${(props) => props.theme.color.bg.lv1};
+ color: ${(props) => props.theme.color.text.lv1}
 }
 
 a {
@@ -30,6 +30,7 @@ button {
   font: inherit;
   cursor: pointer;
   background-color: inherit;
+  color:inherit;
 }
 
 img {
