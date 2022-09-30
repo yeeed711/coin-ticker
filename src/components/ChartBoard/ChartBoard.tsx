@@ -22,7 +22,7 @@ const ChartBoard = () => {
       <PriceTicker />
       <Wrapper>
         <ModeChangeBtn onClick={toggleChart}>
-          {isActive ? 'Chart보기' : 'Area보기'}
+          {isActive ? 'Chart' : 'Area'}
         </ModeChangeBtn>
         {isActive ? <Area data={data} /> : <Candle data={data} />}
       </Wrapper>
