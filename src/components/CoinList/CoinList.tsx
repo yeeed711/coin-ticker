@@ -1,5 +1,6 @@
 import { useQuery } from 'react-query';
 import { Link } from 'react-router-dom';
+import { useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { bithumbCoins } from '../../api';
 
@@ -22,8 +23,10 @@ interface ICoins {
 }
 
 const CoinList = () => {
-  const { isLoading, data } = useQuery<ICoins>('allCoins', bithumbCoins, {
-    // refetchInterval: 1000,
+  const { data } = useQuery<ICoins>(['allCoins'], bithumbCoins, {
+    refetchInterval: 1000,
+    staleTime: 60 * 1000,
+    notifyOnChangeProps: 'tracked',
   });
 
   const CoinsListData = () => {
@@ -33,7 +36,6 @@ const CoinList = () => {
         (Number(data?.data[coin].closing_price) -
           Number(data?.data[coin].prev_closing_price)) /
         Number(data?.data[coin].prev_closing_price);
-
       components.push(
         <Coin key={coin}>
           <Link to={`/${coin}/chart`} state={{ name: coin }}>

@@ -23,11 +23,12 @@ interface ICoins {
 }
 
 const Coins = () => {
-  const { isLoading, data } = useQuery<ICoins>('allCoins', bithumbCoins, {
-    // refetchInterval: 1000,
+  const { isLoading, data } = useQuery<ICoins>(['Coins'], bithumbCoins, {
+    refetchInterval: 1000,
+    staleTime: 60 * 1000,
+    notifyOnChangeProps: 'tracked',
   });
   const { state } = useLocation();
-
   const CoinsListData = () => {
     let components = [];
     for (let coin in data?.data) {

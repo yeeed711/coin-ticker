@@ -24,9 +24,9 @@ const PriceTicker = () => {
 
   //코인 정보
   const { isLoading, data: coinInfoData } = useQuery<ICoin>(
-    ['ohlcv', coinId],
-    () => bithumbCoinInfo(`${coinId}`)
-    // { refetchInterval: 1000 }
+    [['coinTicker'], coinId],
+    () => bithumbCoinInfo(`${coinId}`),
+    { staleTime: 1000, refetchInterval: 1000, notifyOnChangeProps: 'tracked' }
   );
   let refValue =
     (Number(coinInfoData?.data.closing_price) -
