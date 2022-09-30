@@ -34,8 +34,8 @@ const Candle = ({ data }: any) => {
           plotOptions: {
             candlestick: {
               colors: {
-                upward: '#cf314a',
-                downward: '#02c076',
+                upward: '#d33c4b',
+                downward: '#1e60d1',
               },
             },
           },
