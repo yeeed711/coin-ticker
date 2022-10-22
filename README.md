@@ -1,21 +1,32 @@
-# Coin-Ticker
+# Coin-Tracker
 
 > bithumb open API를 활용해 코인정보를 보여주는 웹 사이트입니다.
+
+- URL : https://yeeed711.github.io/coin-ticker
+
+<img src="https://img.shields.io/badge/React-61DAFB?style=flat&logo=React&logoColor=white"> <img src="https://img.shields.io/badge/ReactQuery-FF4154?style=flat&logo=React Query&logoColor=white"> <img src="https://img.shields.io/badge/styled_components-DB7093?style=flat&logo=styled-components&logoColor=white"> <img src="https://img.shields.io/badge/React_Router-CA4245?style=flat&logo=React Router&logoColor=white"> <img src="https://img.shields.io/badge/recoil-764ABC?style=flat&logo=recoil&logoColor=white"> <img src="https://img.shields.io/badge/Apache_ECharts-AA344D?style=flat&logo=Apache ECharts&logoColor=white">
 
 ## 기능
 
 ### 1. 코인 정보
 
-- 실시간 시세, 변동률(전일대비), 고가, 저가, 거래금액을 보여줍니다.
+- `실시간 시세`, `변동률(전일대비)`, `고가`, `저가`, `거래금액`을 보여줍니다.
+- <img width="600" alt="스크린샷 2022-10-23 오전 12 01 23" src="https://user-images.githubusercontent.com/97894417/197346290-a7ca1fa7-2304-48f6-99ba-438fb4dac2ee.png">
 
 ### 2. 다크모드/라이트모드
 
-- 기본적으로 라이트모드이며 버튼을 클릭하면 웹 페이지가 다크모드로 변경됩니다.
+- 기본적으로 `라이트모드`이며 버튼을 클릭하면 웹 페이지가 `다크모드`로 변경됩니다.
+- |                                                                                  라이트모드                                                                                   |                                                                                   다크모드                                                                                    |
+  | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+  | <img width="80" alt="스크린샷 2022-10-23 오전 12 02 34" src="https://user-images.githubusercontent.com/97894417/197346338-a8e54224-c0ba-4460-a77b-40c34ba3a518.png"> | <img width="80" alt="스크린샷 2022-10-23 오전 12 02 43" src="https://user-images.githubusercontent.com/97894417/197346343-de94c70e-11cb-42ad-844d-a782f69f8895.png"> |
 
 ### 3. 코인 상세 정보
 
 - 코인을 클릭하면 상세정보 페이지로 넘어갑니다.
 - 좌측에는 코인리스트를 볼 수 있으며, 우측에는 실시간 시세를 캔들차트와 그래프 차트를 볼 수 있습니다.
+  |캔들차트|그래프차트|
+  |:---:|:---:|
+  | <img width="600" alt="스크린샷 2022-10-23 오전 12 03 52" src="https://user-images.githubusercontent.com/97894417/197346401-be99b112-cf9d-48f9-84ae-e60c68273deb.png"> | <img width="600" alt="스크린샷 2022-10-23 오전 12 04 06" src="https://user-images.githubusercontent.com/97894417/197346410-cd6be074-f59a-41e1-9405-518f71b58b9f.png"> |
 
 ## 트러블슈팅
 
