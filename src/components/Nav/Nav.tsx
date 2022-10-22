@@ -12,7 +12,7 @@ const Nav = () => {
   return (
     <S.Header>
       <S.Logo>
-        <Link to='/'>{`{ COIN$ TICKER }`}</Link>
+        <Link to='/'>{`{ COIN$ TRACKER }`}</Link>
       </S.Logo>
       <ModeChangeBtn onClick={toggleDarkAtom}>
         {isDark ? 'Light' : 'Dark'}

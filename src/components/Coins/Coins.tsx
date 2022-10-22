@@ -1,6 +1,5 @@
 import { useQuery } from 'react-query';
 import { Link, useLocation } from 'react-router-dom';
-import styled from 'styled-components';
 import { bithumbCoins } from '../../api';
 import * as S from './style';
 
