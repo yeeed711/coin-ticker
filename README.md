@@ -2,7 +2,7 @@
 
 > bithumb open API를 활용해 코인정보를 보여주는 웹 사이트입니다.
 
-- URL : https://yeeed711.github.io/coin-ticker
+- URL : https://yeeed711.github.io/coin-tracker
 
 <img src="https://img.shields.io/badge/React-61DAFB?style=flat&logo=React&logoColor=white"> <img src="https://img.shields.io/badge/ReactQuery-FF4154?style=flat&logo=React Query&logoColor=white"> <img src="https://img.shields.io/badge/styled_components-DB7093?style=flat&logo=styled-components&logoColor=white"> <img src="https://img.shields.io/badge/React_Router-CA4245?style=flat&logo=React Router&logoColor=white"> <img src="https://img.shields.io/badge/recoil-764ABC?style=flat&logo=recoil&logoColor=white"> <img src="https://img.shields.io/badge/Apache_ECharts-AA344D?style=flat&logo=Apache ECharts&logoColor=white">
 
@@ -23,7 +23,7 @@
 ### 3. 코인 상세 정보
 
 - 코인을 클릭하면 상세정보 페이지로 넘어갑니다.
-- 좌측에는 코인리스트를 볼 수 있으며, 우측에는 실시간 시세를 캔들차트와 그래프 차트를 볼 수 있습니다.
+- 좌측에는 코인리스트를 볼 수 있으며, 우측에는 실시간 시세와 함께 캔들차트, 그래프 차트를 볼 수 있습니다.
   |캔들차트|그래프차트|
   |:---:|:---:|
   | <img width="600" alt="스크린샷 2022-10-23 오전 12 03 52" src="https://user-images.githubusercontent.com/97894417/197346401-be99b112-cf9d-48f9-84ae-e60c68273deb.png"> | <img width="600" alt="스크린샷 2022-10-23 오전 12 04 06" src="https://user-images.githubusercontent.com/97894417/197346410-cd6be074-f59a-41e1-9405-518f71b58b9f.png"> |
@@ -34,7 +34,7 @@
 
 - 빗썸 사이트에서 받아온 api응답값에 원하는 데이터 형태로 정제하는데 어려움을 겪었다.
 - 단순히 배열안의 객체라면 `map`을 통해 배열을 순회하면 됐지만 객체라서 `Object` 메서드를 사용했다.
-- 처음엔 키값만 필요해서 `Object.keys`를 사용하여 순회하였다. 하지만 후에 객체의 `value`값이 필요해져 `entries`로 순회를 했지만 객체안에 또 다른 객체가 있어서 원하는 데이터에 접근하기 위해서는 객체를 두번 순회 해야만했다.
+- 처음엔 키 값만 필요했기 때문에 `Object.keys`를 사용하여 순회하였다. 하지만 후에 객체의 `value`값이 필요해져 `entries`로 순회를 했는데 객체안에 또 다른 객체가 있어서 원하는 데이터에 접근하기 위해서는 객체를 두번 순회 해야만했다.
 - 결과적으로 객체를 순회하는 다른 방법 중 하나인 `for in` 문을 사용해서 원하는 데이터에 접근할 수 있었다.
 
 ### 데이터의 정렬
