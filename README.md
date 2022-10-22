@@ -1,46 +1,44 @@
-# Getting Started with Create React App
+# Coin-Ticker
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+> bithumb open API를 활용해 코인정보를 보여주는 웹 사이트입니다.
 
-## Available Scripts
+## 기능
 
-In the project directory, you can run:
+### 1. 코인 정보
 
-### `npm start`
+- 실시간 시세, 변동률(전일대비), 고가, 저가, 거래금액을 보여줍니다.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### 2. 다크모드/라이트모드
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- 기본적으로 라이트모드이며 버튼을 클릭하면 웹 페이지가 다크모드로 변경됩니다.
 
-### `npm test`
+### 3. 코인 상세 정보
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- 코인을 클릭하면 상세정보 페이지로 넘어갑니다.
+- 좌측에는 코인리스트를 볼 수 있으며, 우측에는 실시간 시세를 캔들차트와 그래프 차트를 볼 수 있습니다.
 
-### `npm run build`
+## 트러블슈팅
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 배열순회와 객체순회
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- 빗썸 사이트에서 받아온 api응답값에 원하는 데이터 형태로 정제하는데 어려움을 겪었다.
+- 단순히 배열안의 객체라면 `map`을 통해 배열을 순회하면 됐지만 객체라서 `Object` 메서드를 사용했다.
+- 처음엔 키값만 필요해서 `Object.keys`를 사용하여 순회하였다. 하지만 후에 객체의 `value`값이 필요해져 `entries`로 순회를 했지만 객체안에 또 다른 객체가 있어서 원하는 데이터에 접근하기 위해서는 객체를 두번 순회 해야만했다.
+- 결과적으로 객체를 순회하는 다른 방법 중 하나인 `for in` 문을 사용해서 원하는 데이터에 접근할 수 있었다.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 데이터의 정렬
 
-### `npm run eject`
+- 시각화 차트를 구현하던 중 차트의 모양, 결과값이 기댓값과 달랐다.
+- 받아온 데이터 안을 확인해보니 모든 데이터가 날짜를 기준으로 `내림차순` 되어있었다.
+- 제일 최신 데이터를 사용하기 위해 데이터의 뒤에서 부터 100개를 잘라 사용했다.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### 직접 URL로 접근하면 사라지는 데이터들
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- `Link`의 `state`속성 안에 `props`를 담아 다음 라우터 페이지에서 그 `props`를 사용 했었는데 직접 url을 작성해서 페이지에 접근할 경우 에러를 유발했다.
+- `link`를 클릭해서 들어오는 경우에만 `props`를 사용할 수 있기 때문이었기에 `usePrams`를 사용하여 `pathnam`e을 가져오는 방식으로 해결했다.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### 데이터를 매 순간 불러오기
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- 코인 시세는 실시간으로 계속 변하는 데이터기 때문에 이를 보여주기 위해서는 데이터를 계속해서 새로 불러와야했다.
+- 기존에 `fetch`를 사용하면 `setInterval`같은 메서드를 사용해 계속해서 `fetch`를 해줘야한다.
+- `react-qurey`를 사용했기에 내장 기능 중 하나인 `refetchInterval`을 사용하여 1초마다 데이터를 새로 불러오게했다.
