@@ -4,7 +4,7 @@
 
 - URL : https://yeeed711.github.io/coin-tracker
 
-<img src="https://img.shields.io/badge/React-61DAFB?style=flat&logo=React&logoColor=white"> <img src="https://img.shields.io/badge/ReactQuery-FF4154?style=flat&logo=React Query&logoColor=white"> <img src="https://img.shields.io/badge/styled_components-DB7093?style=flat&logo=styled-components&logoColor=white"> <img src="https://img.shields.io/badge/React_Router-CA4245?style=flat&logo=React Router&logoColor=white"> <img src="https://img.shields.io/badge/recoil-764ABC?style=flat&logo=recoil&logoColor=white"> <img src="https://img.shields.io/badge/Apache_ECharts-AA344D?style=flat&logo=Apache ECharts&logoColor=white">
+<img src="https://img.shields.io/badge/React-61DAFB?style=flat&logo=React&logoColor=white"> <img src="https://img.shields.io/badge/ReactQuery-FF4154?style=flat&logo=React Query&logoColor=white"> <img src="https://img.shields.io/badge/styled_components-DB7093?style=flat&logo=styled-components&logoColor=white"> <img src="https://img.shields.io/badge/React_Router-CA4245?style=flat&logo=React Router&logoColor=white"> <img src="https://img.shields.io/badge/recoil-764ABC?style=flat&logo=recoil&logoColor=white">
 
 ## 기능
 
@@ -46,7 +46,7 @@
 ### 직접 URL로 접근하면 사라지는 데이터들
 
 - `Link`의 `state`속성 안에 `props`를 담아 다음 라우터 페이지에서 그 `props`를 사용 했었는데 직접 url을 작성해서 페이지에 접근할 경우 에러를 유발했다.
-- `link`를 클릭해서 들어오는 경우에만 `props`를 사용할 수 있기 때문이었기에 `usePrams`를 사용하여 `pathnam`e을 가져오는 방식으로 해결했다.
+- `link`를 클릭해서 들어오는 경우에만 `props`를 사용할 수 있기 때문이었기에 `usePrams`를 사용하여 `pathname`을 가져오는 방식으로 해결했다.
 
 ### 데이터를 매 순간 불러오기
 
